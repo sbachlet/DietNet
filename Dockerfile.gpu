@@ -37,6 +37,7 @@ RUN pip --no-cache-dir install \
         plinkio \
 	six \
 	keras\
+	h5py \
         && \
     python -m ipykernel.kernelspec
 

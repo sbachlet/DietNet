@@ -3,7 +3,6 @@ This dir contains the implementation of [Diet Networks](https://arxiv.org/abs/16
 
 
 #### Preprocess:
-We assume you have {.panel file for labels, the 3 plinkfiles}. We also are working with Docker. (Dockerfile provided)
 
 - Build environment image:
 ```
@@ -14,32 +13,5 @@ sudo docker build -t diet_code_env -f Dockerfile.gpu .
 sudo nvidia-docker run -it -p 81:6006 -v /path/to/4files:/usr/local/diet_code/1000G diet_code_env
 ```
 
-- Preprocess the data. Assumes you have the files: `affy_samples.20141118.panel`, `genotypes.bim/bed/fam` in `/usr/local/diet_code/1000G`. In the container, we call:
-```
- python preprocess.py
-```
-- We get these files:
-  * `hist3x26.npy`: (px78) matrix of the freq of snp k taking on value j for class i. Built from the train/val set only.
-  * `train{}.npy`: 75% of the remaining 80% of the data in the format where {} = X or Y for genomic data and labels resp..
-  * `valid{}.npy`: 25% of the remaining 80% of the data in the format where {} = X or Y for genomic data and labels resp.
-  * `test.npy`: 20% of the overall data (not used in constructing the histogram embedding.
+### Docker Commands
 
-#### Train the Model:
-- Grab the docker tf environment image if it doesnt build above:
-```
-docker pull ljstrnadiii/diet_code_env:0.1
-```
-- Then, run the preprocess described above.
-- Finally, train the model like so:
-```
-sudo nvidia-docker run -it -p 81:6006 -v /path/to/this/repo:/usr/local/diet_code  diet_code_env
-
-```
-```
-python train.py
-```
-
-### TODO: 
-- build the skeleton of the tensorflow model
-- build numpy pipeline for data entry
-- output the loss and scores to tensorboard

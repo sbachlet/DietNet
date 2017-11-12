@@ -4,6 +4,7 @@ FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu14.04
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         curl \
+	git \
         vim \
         wget \
         libfreetype6-dev \
@@ -35,20 +36,9 @@ RUN pip --no-cache-dir install \
         Pillow \
         plinkio \
 	six \
+	keras\
         && \
     python -m ipykernel.kernelspec
-
-
-ENV PLINK_VERSION 1.90
-ENV PLINK_ZIP plink_linux_x86_64.zip
-ENV PLINK_DIR /opt/plink2
-
-RUN set -ex \
-    && apt-get update && apt-get install -y unzip curl \
-    && curl -fSL "https://www.cog-genomics.org/static/bin/plink170814/plink_linux_x86_64.zip" -o $PLINK_ZIP \
-    && mkdir $PLINK_DIR \
-    && unzip $PLINK_ZIP -d $PLINK_DIR \
-    && rm $PLINK_ZIP
 
 
 # Install TensorFlow GPU version.
@@ -59,8 +49,8 @@ RUN pip --no-cache-dir install \
 ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 
 # symlink for plink2
-RUN cd /usr/local/bin \
-    && ln -s $PLINK_DIR/plink plink2
+#RUN cd /usr/local/bin \
+#    && ln -s $PLINK_DIR/plink plink2
 
 
 # TensorBoard

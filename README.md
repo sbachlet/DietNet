@@ -1,6 +1,5 @@
-## Diet_Code:
-This dir contains the implementation of [Diet Networks](https://arxiv.org/abs/1611.09340). The particular embedding we are going to use is the Histogram. The idea is to preprocess the data set by contructing a matrix s.t. each cell is the frequency of SNP k taking on value j for class i (where k is the SNP; j is 0,1,2; and i is 1,...,26). This is the embedding that is used for the auxilary networks which are used to construct the weight matrix in such a way that we greatly reduce the number of parameters. That is, we lean an embedding on the transpose of the data and construct a matrix that represents the first layer of the discrimative network (the net that makes predictions and optionally reconstructs using an autoencoder). 
-
+## Data Science Docker:
+This repo is a fork of ljstrnadiii/DietNet and is used as a base for running Tensor Flow GPU on googles cloud computing paltform.
 
 #### Preprocess:
 
@@ -15,3 +14,11 @@ sudo nvidia-docker run -it -p 81:6006 -v /path/to/4files:/usr/local/diet_code/10
 
 ### Docker Commands
 
+- To list running instances:
+``` 
+sudo docker ps
+```
+- To save changes to Docker contain run: 
+```
+sudo docker commit <PID> <Instance Name>
+```

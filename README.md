@@ -60,3 +60,12 @@ sudo docker exec -it <PID> /bin/bash
 ```
 sudo docker commit <PID> <Instance Name>
 ```
+### Tensor Board Commands
+- To start Tensorboard
+```
+tensorboard --logdir/logs
+```
+- To view graph:
+```
+http://localhost:6060
+```

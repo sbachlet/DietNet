@@ -18,6 +18,26 @@ sudo nvidia-docker run -it -p 81:6006 -v /path/to/4files:/usr/local/diet_code/10
 ``` 
 sudo docker ps
 ```
+- To start a Docker instance:
+```
+sudo nvidia-docker run -it -p 81:6006 diet_code_env
+```
+- To kill a Docker instance from inside instance:
+```
+ctrl-d 
+```
+- To kill a Docker instance from outside instance: 
+```
+sudo docker kill <PID>
+```
+- To exit a Docker instance:
+```
+ctrl-p ctrl-q
+```
+- To re-enter a Docker instance 
+```
+sudo docker exec -it <PID> /bin/bash
+```
 - To save changes to Docker contain run: 
 ```
 sudo docker commit <PID> <Instance Name>
